@@ -1,6 +1,5 @@
 #!/bin/bash
 checkAliyunServiceStatus(){
-  checkServiceList=("aliyun.service" "aegis.service" "cloudmonitor.service")
   #serviceStatusList=("active (running)" "inactive (dead)")
   echo -e "======================================================================================== \n"
   echo "check aliyun service status...."
@@ -18,6 +17,7 @@ checkAliyunServiceStatus(){
   done
   echo -e "======================================================================================== \n"
 }
+checkServiceList=("aliyun.service" "aegis.service" "cloudmonitor.service")
 checkAliyunServiceStatus
 echo -n -e "please enter an integer to operator-> \n"
 echo "======================================================================================== "
@@ -28,17 +28,17 @@ if [[ $nump =~ ^-?[0-2]$ ]]; then
     case $nump in
         1)
         echo "going to start aliyun service"
-        systemctl start aliyun.service
-        systemctl start aegis.service
-        systemctl start cloudmonitor.service
+        for i in ${checkServiceList[@]}; do
+          systemctl start ${i}
+        done
         echo "======================================================================================== "
         checkAliyunServiceStatus
         ;;
         2)
         echo "going to stop aliyun service"
-        systemctl stop aliyun.service
-        systemctl stop aegis.service
-        systemctl stop cloudmonitor.service
+        for i in ${checkServiceList[@]}; do
+          systemctl stop ${i}
+        done
         echo "======================================================================================== "
         checkAliyunServiceStatus
         ;;
