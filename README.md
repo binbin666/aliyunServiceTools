@@ -22,8 +22,7 @@ Surely, this script could run ```above centos7```
 ```shell
 # sh aliyunService.sh
 ```
->>>
-  0: exit
+>>> 0: exit
   1: start service
   2: stop service
 
